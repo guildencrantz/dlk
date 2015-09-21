@@ -18,7 +18,7 @@ kubernetes:
     --config=/etc/kubernetes/manifests
     --cluster_dns=10.0.0.10
     --cluster_domain=kubernetes.local
-  image: "gcr.io/google_containers/hyperkube:v0.21.2"
+  image: "gcr.io/google_containers/hyperkube:v1.0.1"
   net: "host"
   restart: "always"
   volumes:
@@ -27,7 +27,7 @@ proxy:
   command: /hyperkube proxy
     --master=http://127.0.0.1:8080
     --v=2
-  image: "gcr.io/google_containers/hyperkube:v0.21.2"
+  image: "gcr.io/google_containers/hyperkube:v1.0.1"
   net: "host"
   privileged: true
   restart: "always"
