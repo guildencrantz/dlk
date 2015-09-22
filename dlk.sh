@@ -9,7 +9,7 @@ docker-compose up -d
 echo -n "Waiting for API "
   while [ 1 ]; do
     sleep 1
-    ! kubectl version >/dev/null || break
+    ! kubectl version >/dev/null 2>&1 || break
   done
 echo -e "\e[32mOK\e[39m"
 
@@ -26,5 +26,11 @@ echo -n "Verifying skydns (wait for it) "
     fi
   done
 echo -e "\e[32mOK\e[39m"
+
+echo -n "Starting kube-ui  "
+  kubectl create -f ui/kube-ui-rc.yaml --namespace=kube-system >/dev/null
+  kubectl create -f ui/kube-ui-svc.yaml --namespace=kube-system >/dev/null
+echo -e "\e[32mOK\e[39m"
+kubectl cluster-info | grep KubeUI
 
 popd >/dev/null
