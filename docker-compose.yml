@@ -31,3 +31,7 @@ proxy:
   net: "host"
   privileged: true
   restart: "always"
+fluentd:
+  image: "gcr.io/google_containers/fluentd-elasticsearch:1.11"
+  volumes:
+    - "/var/log/containers:/var/log/containers"

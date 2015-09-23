@@ -31,6 +31,16 @@ echo -n "Starting kube-ui  "
   kubectl create -f ui/kube-ui-rc.yaml --namespace=kube-system >/dev/null
   kubectl create -f ui/kube-ui-svc.yaml --namespace=kube-system >/dev/null
 echo -e "\e[32mOK\e[39m"
-kubectl cluster-info | grep KubeUI
+
+echo -n "Starting ElasticSearch for cluster logging  "
+  kubectl create -f logging/es-controller.yaml >/dev/null
+  kubectl create -f logging/es-service.yaml >/dev/null
+echo -e "\e[32mOK\e[39m"
+echo -n "Starting Kibana for cluster logging  "
+  kubectl create -f logging/kibana-controller.yaml >/dev/null
+  kubectl create -f logging/kibana-service.yaml >/dev/null
+echo -e "\e[32mOK\e[39m"
+
+kubectl cluster-info
 
 popd >/dev/null
