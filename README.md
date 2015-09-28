@@ -1,10 +1,18 @@
 # Docker Local Kubernetes
 
-# Start Up
+# Usage
+## Start Up
 
-    ./dlk.sh
+    ./dlk.sh up
 
-# Shutdown
-This is still ugly: Until I script out killing all the containers created by kubernetes I use the nuclear option:
+## Shutdown
 
-    docker ps | awk '{ print $1; }' | xargs sudo docker kill
+    ./dlk.sh down
+
+# Dependencies
+  [curl-unix-socket](https://github.com/Soulou/curl-unix-socket)
+
+    go get github.com/Soulou/curl-unix-socket
+
+  [jq](http://stedolan.github.io/jq/)
+
